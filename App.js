@@ -25,35 +25,24 @@ enableScreens()
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    'open-sans' : require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold' : require('./assets/fonts/OpenSans-Bold.ttf')
-  })
-}
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  });
+};
 
+export default function App() {
+  const [fontLoaded, setFontLoaded] = useState(false);
 
- export default function App() {
-
-  const [dataLoaded,setDataLoaded] = useState(false)
-
-  if(!dataLoaded){
+  if (!fontLoaded) {
     return (
-    <AppLoading 
-    startAsync={fetchFonts} 
-    onFinish={()=>setDataLoaded(true)} 
-    onError={(err) => console.log(err)}
-    />
-    )
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+        onError={(error)=> console.log(error)}
+
+      />
+    );
   }
 
-    return (
-    <MealsNavigator/>
-  );
-
+  return <MealsNavigator />;
 }
-
-const styles = StyleSheet.create({
-  screen:{
-    flex:1,
-  },
-  
-});
