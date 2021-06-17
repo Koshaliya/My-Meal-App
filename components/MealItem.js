@@ -7,6 +7,7 @@ import {
   ImageBackground
 } from 'react-native';
 
+import DefaultText from '../components/DefaultText'
 
 //wrap with imageBackground - which is in and above the image
 //{...styles.container,...{backgroundColor: props.color} - merging the styles -pull out all key value pairs
@@ -29,9 +30,9 @@ const MealItem = props => {
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text>{props.duration}m</Text>
-            <Text>{props.complexity.toUpperCase()}</Text>
-            <Text>{props.affordability.toUpperCase()}</Text>
+            <DefaultText>{props.duration}m</DefaultText>
+            <DefaultText>{props.complexity.toUpperCase()}</DefaultText>
+            <DefaultText>{props.affordability.toUpperCase()}</DefaultText>
           </View>
         </View>
       </TouchableOpacity>

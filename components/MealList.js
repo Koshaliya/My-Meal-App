@@ -13,7 +13,7 @@ const MealList = props => {
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
         onSelectMeal={() => {
-          props.navigation.navigate({
+          props.navigation.navigate({ //navigation prop available only in navigator-react navgtn
             routeName: 'MealDetail',
             params: {
               mealId: itemData.item.id
