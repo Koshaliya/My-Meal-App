@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-
-import MealsNavigator from './navigation/MealsNavigator';
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font' 
 import {enableScreens} from 'react-native-screens'  //or enableScreens
+import { createStore,combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+import MealsNavigator from './navigation/MealsNavigator';
+import mealsReducer from './store/reducers/meals'
+
 //apploading
 //expofont
 //install react navigation - for native apps - version 3/4 - smooth experince -npm install --save react-navigation
@@ -15,13 +18,21 @@ import {enableScreens} from 'react-native-screens'  //or enableScreens
 //install react-native-screens
 //install createBottomTabNavigator - react-navigation-tabs
 //npm install --save react-navigation-header-buttons
-//                   @expo-vector/icons
-//npm                react-navigation-material-bottom-tabs
-//npm                react-native-paper
+//npm install --save @expo-vector/icons
+//npm install --save react-navigation-material-bottom-tabs
+//npm install --save react-native-paper
+//npm install --save redux react-redux
 
 //load Async returns a promise
 
 enableScreens()
+
+const rootReducer = combineReducers({
+  meals:mealsReducer
+})
+
+const store = createStore(rootReducer)
+
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -44,5 +55,7 @@ export default function App() {
     );
   }
 
-  return <MealsNavigator />;
+  return <Provider store={store}>
+    <MealsNavigator />
+    </Provider>
 }
